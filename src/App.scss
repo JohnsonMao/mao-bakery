@@ -1,0 +1,68 @@
+// Custom.scss
+// Option B: Include parts of Bootstrap
+
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "~bootstrap/scss/functions";
+
+// 2. Include any default variable overrides here
+@import "./scss/custom_variable";
+
+// 3. Include remainder of required Bootstrap stylesheets
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
+
+// 4. Include any optional Bootstrap components as you like
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/containers";
+@import "~bootstrap/scss/grid";
+// 5. Add additional custom code here
+
+@import '~bootstrap/scss/bootstrap';
+@import "./scss/custom_base";
+
+.logo {
+    text-indent:101%; /* 首行縮排 */
+    overflow:hidden; /* 自動隱藏超出的文字或圖片 */
+    white-space:nowrap; /* 希望元素在第一排上面，沒有斷行 */
+    display: block;
+    width: 60px;
+    height: 60px;
+    background-image: url('./img/logo.png');
+    background-size: cover;
+}
+.activitiesList li {
+  background: linear-gradient(transparent 0%,
+                              transparent 10%,
+                              lighten($secondary, 40) 10%,
+                              lighten($secondary, 40) 90%,
+                              transparent 90%,
+                              transparent 100%,
+  )
+}
+.activitiesList li+li {
+  margin-top: 40px;
+}
+.activitiesList li:nth-child(2n) .row {
+  flex-direction: row-reverse;
+}
+
+.card {
+  z-index: 2;
+}
+
+.btn-primary {
+  color: #fff;
+}
+
+.favorites {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+@import "~bootstrap/scss/utilities/api";
