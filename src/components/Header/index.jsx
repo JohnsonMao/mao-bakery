@@ -4,7 +4,7 @@ import MyNavLink from './MyNavLink'
 export default class Header extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-lg fixed-top p-0">
+      <nav className="navbar navbar-expand-lg fixed-top bg-headerNavbar p-0">
         <div className="container">
           <h1 className="navbar-brand m-0 p-0">
               <a href="#" className="logo">Mao's bakery 烘焙手作</a>

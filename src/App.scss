@@ -34,6 +34,20 @@
     background-image: url('./img/logo.png');
     background-size: cover;
 }
+.bg-headerNavbar {
+  background: rgba(#eee, .5);
+}
+
+.btn-carousel {
+  background-color: $secondary;
+  opacity: .5;
+
+  &.active {
+    background-color: #333;
+    opacity: .5;
+  }
+}
+
 .activitiesList li {
   background: linear-gradient(transparent 0%,
                               transparent 10%,
@@ -56,6 +70,10 @@
 
 .btn-primary {
   color: #fff;
+}
+
+.transition-1 {
+  transition: 1s;
 }
 
 .favorites {

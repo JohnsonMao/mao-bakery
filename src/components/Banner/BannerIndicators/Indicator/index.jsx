@@ -8,7 +8,7 @@ export default class Indicator extends Component {
     return (
       <li>
         <button type="button" 
-          className={`btn btn-secondary rounded-circle mx-3 p-2 `+ result}
+          className={`btn btn-carousel rounded-circle mx-3 p-2 `+ result}
           data-src = {src}
           data-title = {title}
           data-index = {index}

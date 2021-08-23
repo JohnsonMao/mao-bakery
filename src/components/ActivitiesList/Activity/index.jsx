@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 export default class Activity extends Component {
   render() {
+    const { title, description, href } = this.props;
     return (
       <li>
         <div className="container">
@@ -13,10 +14,11 @@ export default class Activity extends Component {
             </div>
             <div className="col-5">
               <div className="d-flex flex-column justify-content-center h-100 p-5">
-                <h3 className="text-center">廚藝課程</h3>
-                <p>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta consequuntur nemo beatae quos tenetur. Facere, magni. Facere, natus, repellendus praesentium assumenda porro vitae repellat eos rerum cupiditate iste asperiores in.
+                <h3 className="text-center fs-1">{title}</h3>
+                <p className="fs-4">
+                  {description}
                 </p>
+                <a href={href}>了解更多</a>
               </div>
             </div>
           </div>

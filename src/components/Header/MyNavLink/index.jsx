@@ -4,7 +4,7 @@ import { NavLink } from 'react-bootstrap'
 export default class MyNavLink extends Component {
   render() {
     return (
-      <NavLink className="nav-link fs-5 px-4 py-2" {...this.props} />
+      <NavLink className="nav-link fs-5 fw-bold px-4 py-2" {...this.props} />
     )
   }
 }

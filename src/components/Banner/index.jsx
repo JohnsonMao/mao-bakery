@@ -5,15 +5,6 @@ import Arrows from '../Arrows';
 
 export default class Banner extends Component {
 
-  static defaultProps = {
-    data: [
-      { src: 'lemoncake.jpg', title: '檸檬蛋糕' },
-      { src: 'walnutpie.jpg', title: '堅果派' },
-      { src: 'cover.jpg', title: '毛毛烘焙坊' },
-    ],
-    speed: 3000
-  }
-
   // 初始狀態
   state = {
     src: this.props.data[0].src,
@@ -39,7 +30,6 @@ export default class Banner extends Component {
       this.index = (this.index + 1) % this.total;
       const src = data[ this.index ].src;
       const title = data[ this.index ].title;
-      const active = data[ this.index ].src;
 
       this.setState({
         src: src,
@@ -98,7 +88,6 @@ export default class Banner extends Component {
   move = (event) => {
     this.stopTimer();
     const { dataset } = event.target;
-    console.log('@')
 
     this.setState({
       src: dataset.src,
@@ -110,21 +99,32 @@ export default class Banner extends Component {
   }
 
   render() {
-    const { src, title } = this.state;
+    const { data } = this.props;
     return (
-      <figure className="carousel vh-100 mb-5">
+      <figure className="carousel slide carousel-fade vh-100 mb-5">
         <div className="carousel-indicators">
-          <BannerIndicators data = {this.props.data} 
+          <BannerIndicators data = {data} 
             active = {this.state.active} 
             onClick = {this.move} onMouseOut = {this.setTimer}/>
         </div>
         <ul className="carousel-inner h-100">
-          <BannerItem src = {src} title = {title} />
+          {
+            data.map((item, index) => {
+              return(
+                <BannerItem 
+                  key = {index} 
+                  active = {this.state.active} 
+                  src = {item.src} 
+                  title = {item.title} 
+                />
+              )
+            })
+          }
         </ul>
         <Arrows direction = {'left'} color = {'primary'} 
-        onClick = {this.next} onMouseOut = {this.setTimer}/>
+          onClick = {this.next} onMouseOut = {this.setTimer}/>
         <Arrows direction = {'right'} color = {'primary'} 
-        onClick = {this.next} onMouseOut = {this.setTimer}/>
+          onClick = {this.next} onMouseOut = {this.setTimer}/>
       </figure>
     )
   }
