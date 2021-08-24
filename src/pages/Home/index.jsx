@@ -11,7 +11,6 @@ export default class Home extends Component {
       { src: 'walnutpie.jpg', title: '堅果派' },
       { src: 'cover.jpg', title: '毛毛烘焙坊' },
     ],
-    speed: 3000,
     newsData: [
       { title: '廚藝課程',
         description: '邀請專業老師耐心解講，享受頂級設備的優質烘焙環境，熱愛烘焙的新手老手都歡迎。',
@@ -33,12 +32,12 @@ export default class Home extends Component {
   }
 
   render() {
-    const { bannerData, speed, newsData, productsData } = this.state;
+    const { bannerData, newsData, productsData } = this.state;
     return (
       <Fragment>
-        <Banner data = {bannerData} speed = {speed}/>
-        <ActivitiesList data = {newsData} />
-        <ProductsList data = {productsData} />
+        <Banner bannerData = {bannerData} />
+        <ActivitiesList newsData = {newsData} />
+        <ProductsList productData = {productsData} />
       </Fragment>
     )
   }

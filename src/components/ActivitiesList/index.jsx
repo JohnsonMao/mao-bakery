@@ -1,27 +1,26 @@
-import React, { Component } from 'react';
-import Activity from './Activity';
+import React from 'react';
+import Activity from './Activity'
 
-export default class ActivitiesList extends Component {
-  render() {
-    const { data } = this.props;
+export default function ActivitiesList(props) {
 
-    return (
-      <section className="mb-5">
-        <ul className="activitiesList">
-          {
-            data.map((item, index) => {
-              return(
-                <Activity 
-                  key = {index}
-                  title = {item.title}
-                  description = {item.description}
-                  href = {item.href}
-                />
-              )
-            })
-          }
-        </ul>
-      </section>
+  const { newsData: data } = props;
+  const activies = data.map((item, index) => {
+    return(
+      <Activity
+        key = {index}
+        title = {item.title}
+        description = {item.description}
+        href = {item.href}
+      />
     )
-  }
+  })
+
+
+  return (
+    <section className="mb-5">
+      <ul className="activitiesList">
+        { activies }
+      </ul>
+    </section>
+  )
 }

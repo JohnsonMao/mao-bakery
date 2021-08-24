@@ -1,93 +1,56 @@
-import React, { Component } from 'react'
-import Product from './Product';
-import Arrows from '../Arrows';
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Autoplay, Navigation } from 'swiper/core';
+import Product from '../ProductCard';
 
-export default class ProductsList extends Component {
+import 'swiper/swiper.scss';
+import "swiper/components/navigation/navigation.scss";
 
-  state = {
-    translate: 0,
-    speed: 2000,
-    column: 100 / 3,
-  }
+SwiperCore.use([ Autoplay, Navigation ]);
 
-  // 計時器
-  timer = null;
+export default function ProductsList(props) {
 
-  // 索引
-  index = 1;
-
-  // 輪播圖總數
-  total = this.props.data.length;
-
-  setTimer = () => {
-    this.stopTimer();
-    const { translate, speed, column } = this.state;
-    this.timer = setInterval(() => {
-      let newTranslate = translate - column * this.index;
-      this.index++
-
-      if( -newTranslate >= this.total * column) {
-        newTranslate = 0;
-        this.index = 1;
-      }
-      this.setState({translate: newTranslate});
-    }, speed)
-  }
-
-  // 關閉計時器
-  stopTimer = () => {
-    clearInterval( this.timer )
-  }
-
-  // 初始化啟動計時器
-  componentDidMount(){
-    this.setTimer();
-  }
-
-  render() {
-    const { data } = this.props;
-    const { translate } = this.state;
-    return (
-      <div className="container position-relative">
-        <div className="w-75 mx-auto overflow-hidden mb-5">
-          <ul className="row row-cols-3 flex-nowrap transition-1"
-            style={{transform: `translate(${translate}%)`}}>
-            {
-              data.map((item,index) => {
-                return(
-                  <Product 
-                    key = {index}
-                    src = {item.src}
-                    title = {item.title}
-                    price = {item.price}
-                    badge = {item.badge}
-                  />
-                )
-              })
-            }
-            <Product
-              src = {data[0].src}
-              title = {data[0].title}
-              price = {data[0].price}
-              badge = {data[0].badge}
-            />
-            <Product
-              src = {data[1].src}
-              title = {data[1].title}
-              price = {data[1].price}
-              badge = {data[1].badge}
-            />
-            <Product
-              src = {data[2].src}
-              title = {data[2].title}
-              price = {data[2].price}
-              badge = {data[2].badge}
-            />
-          </ul>
-        </div>
-        <Arrows direction = {'left'} color = {'primary'} />
-        <Arrows direction = {'right'} color = {'primary'} />
-      </div>
+  const { productData: data } = props;
+  const products = data.map((item, index) => {
+    return(
+      <SwiperSlide key = {`product-${index}`} tag = "li">
+        <Product 
+          src = {item.src}
+          title = {item.title}
+          price = {item.price}
+          badge = {item.badge}
+        />
+      </SwiperSlide>
     )
-  }
+  })
+
+  return (
+    <section className="container">
+      <Swiper
+        slidesPerView = {1}
+        spaceBetween = {15}
+        breakpoints={{
+          768: {
+            slidesPerView: 2
+          },
+          768: {
+            slidesPerView: 3
+          },
+          1024: {
+            slidesPerView: 4
+          }
+        }}
+        autoplay = {{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        navigation
+        loop = {true}
+        wrapperTag = "ul"
+        className = "mb-5"
+      >
+        { products }
+      </Swiper>
+    </section>
+  )
 }
