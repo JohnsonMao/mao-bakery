@@ -1,0 +1,21 @@
+@import "~bootstrap/scss/functions";
+@import '../../scss/custom_variable';
+@import "~bootstrap/scss/variables";
+
+.activitiesList li {
+  background: linear-gradient(transparent 0%,
+                              transparent 10%,
+                              lighten($secondary, 40) 10%,
+                              lighten($secondary, 40) 90%,
+                              transparent 90%,
+                              transparent 100%,
+  )
+}
+
+.activitiesList li+li {
+  margin-top: 40px;
+}
+
+.activitiesList li:nth-child(2n) .row {
+  flex-direction: row-reverse;
+}

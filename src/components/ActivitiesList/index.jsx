@@ -1,5 +1,7 @@
 import React from 'react';
-import Activity from './Activity'
+import Activity from './Activity';
+
+import './_ActivitiesList.scss';
 
 export default function ActivitiesList(props) {
 

@@ -1,0 +1,32 @@
+@import "~bootstrap/scss/functions";
+@import '../../scss/custom_variable';
+@import "~bootstrap/scss/variables";
+
+.logo {
+  text-indent:101%; /* 首行縮排 */
+  overflow:hidden; /* 自動隱藏超出的文字或圖片 */
+  white-space:nowrap; /* 希望元素在第一排上面，沒有斷行 */
+  display: block;
+  width: 60px;
+  height: 60px;
+  background-image: url('./logo.png');
+  background-size: cover;
+}
+
+.headerNavbar {
+  display: flex;
+  padding: 0;
+  background-color: #eee;
+  transition: all .2s linear;
+    &.isTop {
+      padding-top: 8px;
+      padding-bottom: 8px;
+      background-color: rgba(#eee, .5);
+      backdrop-filter: blur(5px);
+    }
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+}

@@ -1,0 +1,13 @@
+@import "~bootstrap/scss/functions";
+@import '../../scss/custom_variable';
+@import "~bootstrap/scss/variables";
+
+.favorites {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  i {
+    transform: translateY(2px)
+  }
+}
