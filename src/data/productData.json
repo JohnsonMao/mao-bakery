@@ -1,5 +1,5 @@
 [
-  { "src": "donuts.jpg", "title": "雪花甜甜圈", "price": 48, "badge": "" },
+  { "src": "donuts.jpg", "title": "雪花甜甜圈", "price": 48, "badge": "人氣推薦" },
   { "src": "kiwisago.jpg", "title": "奇異果西米露", "price": 60, "badge": "新品上市" },
   { "src": "macaron.jpg", "title": "馬卡龍", "price": 480, "badge": "人氣推薦" },
   { "src": "berrypie.jpg", "title": "莓果派", "price": 420, "badge": "" },
@@ -9,6 +9,6 @@
   { "src": "strawberry.jpg", "title": "草莓冰淇淋", "price": 120, "badge": "人氣推薦" },
   { "src": "creampie.jpg", "title": "鮮奶油派", "price": 360, "badge": "人氣推薦" },
   { "src": "blueberry.jpg", "title": "藍莓派", "price": 400, "badge": "新品上市" },
-  { "src": "oat.jpg", "title": "燕麥", "price": 60, "badge": "" },
+  { "src": "oat.jpg", "title": "燕麥", "price": 60, "badge": "人氣推薦" },
   { "src": "pancake.jpg", "title": "鬆餅", "price": 100, "badge": "新品上市" }
 ]

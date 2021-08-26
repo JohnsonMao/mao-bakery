@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import PageComponent from './PageComponent';
 import ProductCards from '../ProductCards';
+import filterFunc from './filterFunc';
 
 export default function Pagination(props) {
 
   // 初始資料
-  const totalData = [...props.productData];
+  const totalData = [...props.data];
+  // 過濾資料
+  const [filter, handleFilter] = useReducer(filterFunc, {data: totalData})
   // 查詢的產品數量
   const totalNum = totalData.length;
   // 每頁顯示產品數量
@@ -19,7 +22,7 @@ export default function Pagination(props) {
   // 前往頁數
   const [goPage, setGoPage] = useState(1);
 
-  // 資料渲染
+  // 資料初次渲染
   useEffect(()=>{
     pageClick(1)
   },[])
