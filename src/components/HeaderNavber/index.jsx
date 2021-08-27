@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 
-import './_headerNavbar.scss';
+import './scss/_headerNavbar.scss';
 
 export default function HeaderNavbar() {
 
