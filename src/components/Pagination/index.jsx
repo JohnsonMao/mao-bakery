@@ -1,16 +1,27 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 import PageComponent from './PageComponent';
 import ProductCards from '../ProductCards';
 import filterFunc from './filterFunc';
 
+const filters = {
+  all: data => data,
+  festival: data => data.filter((product) => product.badge === "節日精選"),
+  popularity: data => data.filter((product) => product.badge === "人氣推薦"),
+  new: data => data.filter((product) => product.badge === "新品上市"),
+  food: data => data.filter((product) => product.badge === "食材"),
+  tool: data => data.filter((product) => product.badge === "器具"),
+}
+
 export default function Pagination(props) {
 
-  // 初始資料
-  const totalData = [...props.data];
+  const { filterType, data } = props;
   // 過濾資料
-  const [filter, handleFilter] = useReducer(filterFunc, {data: totalData})
+  const [filterData, setFilterData] = useState(data)
+  const handleFilter = (filterType) => {
+    setFilterData(filters[filterType](data))
+  }
   // 查詢的產品數量
-  const totalNum = totalData.length;
+  const totalNum = filterData.length;
   // 每頁顯示產品數量
   const displayNum = 6;
   // 總頁數
@@ -24,8 +35,9 @@ export default function Pagination(props) {
 
   // 資料初次渲染
   useEffect(()=>{
+    handleFilter(filterType)
     pageClick(1)
-  },[])
+  },[filterType])
 
   // 換頁功能
   const pageClick = (pageNum) => {
@@ -34,7 +46,7 @@ export default function Pagination(props) {
       setCurrentPage( currentPage => currentPage = pageNum );
     const newIndexList = [];
     for(let i = (pageNum - 1) * displayNum; i < displayNum * pageNum; i++ ){
-      newIndexList.push( totalData[i] )
+      newIndexList.push( filterData[i] )
     }
     setIndexList( indexList => indexList = newIndexList )
     setGoPage( goPage => goPage = pageNum )
