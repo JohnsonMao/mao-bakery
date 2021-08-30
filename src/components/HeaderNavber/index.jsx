@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect, Fragment } from 'react';
+import { NavLink, Link } from 'react-router-dom';
+import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 
+import headerNavList from '../../config/headerNavConfig';
 import './scss/_headerNavbar.scss';
 
 export default function HeaderNavbar() {
@@ -15,32 +17,67 @@ export default function HeaderNavbar() {
     })
   }, [])
 
+  const getHeaderNavList = (headerNavList) => {
+    return headerNavList.map((item, index) => {
+      if( item.children ){
+        return (
+          <Fragment key={`menu-${ index }`} >
+          <NavDropdown as={'li'} title={ item.title } 
+            className="text-center fs-5 fw-bold">
+          { 
+            item.children.map((item, index) => { 
+              return (
+                <Link key={`children-${index}`} to={ item.path } className="d-block">
+                  { item.title }
+                </Link>
+              )
+            })
+          }
+        </NavDropdown>
+        </Fragment>
+        )
+      } else {
+        return (
+          <MyNavLink key={`menu-${ index }`} to={ item.path } className={ item.className }>
+            { item.title }
+          </MyNavLink>
+        )
+      }
+    })
+  }
+
   return (
-    <nav className={`headerNavbar fixed-top
+    <Navbar expand="md" className={`headerNavbar fixed-top
       ${isTop ? 'isTop' : ''}`}>
-      <div className="container">
+      <Container>
         <h1 className="m-0 p-0">
-            <a href="#" className="logo">Mao's bakery 烘焙手作</a>
+            <Navbar.Brand href="#" className="logo p-0">Mao's bakery 烘焙手作</Navbar.Brand>
         </h1>
-        <ul className="nav">
-          <MyNavLink to="/">首頁</MyNavLink>
-          <MyNavLink to="/about">關於</MyNavLink>
-          <MyNavLink to="/news">活動</MyNavLink>
-          <MyNavLink to="/shop">商品</MyNavLink>
-          <MyNavLink to="/login">登入</MyNavLink>
-          <MyNavLink to="/shopping_cart">
+        <ul className="d-flex align-items-center m-0">
+          <MyNavLink to="/shopping_cart" className="d-block d-md-none">
             <i className="fas fa-shopping-cart"></i>
-          </MyNavLink>  
+          </MyNavLink>
+          <li>
+            <Navbar.Toggle />
+          </li>
         </ul>
-      </div>
-    </nav>
+        <Navbar.Collapse>
+          <Nav as={'ul'} className="align-items-center ms-auto">
+            {
+              getHeaderNavList( headerNavList )
+            }
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   )
 }
 
 function MyNavLink(props) {
   return (
-    <li className="nav-item">
-      <NavLink className="nav-link fs-5 fw-bold px-4 py-3" {...props}/>
-    </li>
+    <Nav.Item as={'li'}>
+      <NavLink {...props} 
+        className={`nav-link text-center fs-5 fw-bold px-4 py-3 ${props.className || ''}`}/>
+    </Nav.Item>
   )
 }

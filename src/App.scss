@@ -36,6 +36,30 @@
   color: #fff;
 }
 
+.navbar {
+  padding: 0;
+}
+
+.nav-item {
+  width: 100%;
+  @include media-breakpoint-up(md) {
+    width: auto;
+  }
+}
+
+.nav-link {
+  padding: 1rem 1.25rem;
+}
+
+.dropdown-menu {
+  min-width: max-content;
+  padding: 0.5rem;
+  background: $light;
+  @media (min-width: 768px){
+    min-width: max-content;
+  }
+}
+
 .swiper-button-next, .swiper-button-prev {
   color: $secondary;
 }

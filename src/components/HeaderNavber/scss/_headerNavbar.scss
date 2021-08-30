@@ -12,21 +12,14 @@
   background-image: url('../img/logo.png');
   background-size: cover;
 }
-
 .headerNavbar {
-  display: flex;
   padding: 0;
-  background-color: #eee;
+  background-color: $light;
   transition: all .2s linear;
     &.isTop {
       padding-top: 8px;
       padding-bottom: 8px;
-      background-color: rgba(#eee, .2);
+      background-color: rgba($light, .2);
       backdrop-filter: blur(5px)
-    }
-    .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
     }
 }

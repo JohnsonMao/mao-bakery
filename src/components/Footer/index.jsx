@@ -1,11 +1,19 @@
 import React, { Component } from 'react'
-
+import { Container, Row, Col } from 'react-bootstrap'
 export default class Footer extends Component {
   render() {
     return (
       <footer className="bg-dark py-2">
-        <div className="container">
-          <div className="d-flex justify-content-around align-items-center">
+        <Container>
+          <div className="d-md-flex d-block justify-content-around align-items-center">
+            <ul className="d-flex flex-column align-items-center mb-0">
+              <li><a href="tel:+886-7-12345678">
+                  07-1234-5678</a></li>
+              <li><a href="mailto:sweetaste@email.com">
+                  sweetaste@email.com</a></li>
+              <li><h4 className="text-primary fs-6 m-0">
+                  800 高雄市新興區幸福路 520 號</h4></li>
+            </ul>
             <div className="d-flex flex-column align-items-center">
               <ul className="d-flex m-0">
                 <li><a href="https://www.facebook.com/" 
@@ -24,17 +32,9 @@ export default class Footer extends Component {
               <p className="text-center text-secondary m-0">
                 &copy; 2018 Sweetaste* All Rights Reserved
               </p>
-            </div>
-            <ul className="m-0">
-              <li><a href="tel:+886-7-12345678">
-                  07-1234-5678</a></li>
-              <li><a href="mailto:sweetaste@email.com">
-                  sweetaste@email.com</a></li>
-              <li><h4 className="text-primary fs-6 m-0">
-                  800 高雄市新興區幸福路 520 號</h4></li>
-            </ul> 
+            </div> 
           </div>
-        </div>
+        </Container>
       </footer>
     )
   }

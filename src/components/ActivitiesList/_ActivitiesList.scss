@@ -5,15 +5,15 @@
 .activitiesList li {
   background: linear-gradient(transparent 0%,
                               transparent 10%,
-                              lighten($secondary, 40) 10%,
-                              lighten($secondary, 40) 90%,
+                              $light 10%,
+                              $light 90%,
                               transparent 90%,
                               transparent 100%,
   )
 }
 
 .activitiesList li+li {
-  margin-top: 40px;
+  margin-top: 24px;
 }
 
 .activitiesList li:nth-child(2n) .row {

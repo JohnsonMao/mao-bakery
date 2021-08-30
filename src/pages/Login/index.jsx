@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import { reqLogin } from '../../api';
+import memoryUtils from '../../utils/memoryUtils';
+import storageUtils from '../../utils/storageUtils';
 
 import './scss/_login.scss';
 
@@ -25,15 +29,15 @@ const useForm = (inval) => {
 
 export default function Login() {
 
-  // 是否要註冊
+  /* 註冊狀態 */
   const [signUp, setSignUp] = useState(false);
-
+  /* 切換是否註冊 */
   const handleSignUp = () => {
     setSignUp( signUp => signUp = !signUp );
   }
-
+  /* 登入資料 */
   const [signInForm, setSignInForm] = useForm({username:'', password:''})
-  
+  /* 註冊資料 */
   const [signUpForm, setSignUpForm] = useForm({
                                                 username:'', 
                                                 email:'', 
@@ -42,6 +46,9 @@ export default function Login() {
                                                 subscription: true
                                               })
   
+  /* 設定 history 常數 */
+  const history = useHistory()
+  /* 發送請求 */
   const handleSubmit = async (data, e) => {
     e.preventDefault()
     switch(data) {
@@ -53,8 +60,16 @@ export default function Login() {
         }
         const result = await reqLogin(data);
         if( result.status === 0 ) {
-          console,log('登入成功')
-          props.history.replace('/')
+          console.log('登入成功')
+          const user = result.data
+          // 保存使用者資料
+          memoryUtils.user = user;
+          // 保存到 localStorage
+          storageUtils.saveUser( user )
+          // 登入跳轉頁面
+          history.replace({
+            pathname: '/',
+          })
         } else {
           console.log( result.msg )
         }
@@ -65,27 +80,33 @@ export default function Login() {
     }
   }
 
+  /* 如果使用者已經登入，自動跳轉管理介面 */
+  const user = memoryUtils.user
+  if( user._id ) {
+    return <Redirect to="/edit" />
+  }
+
   return (
-    <div className="vh-100 bg-primary pt-5">
+    <div className="vh-100 bg-info pt-5">
       <div className="container h-100 d-flex justify-content-center align-items-center">
         <div className={`login ${signUp ? "active" : ""}`}>
           <div className="login__container">
             <div className="login__container__box signIn">
-              <h2 className="text-light fs-5">已經有帳號了 ?</h2>
+              <h2 className="text-primary fs-5">已經有帳號了 ?</h2>
               <Button type="button" variant="light" 
-                onClick={handleSignUp}>Sign in
+                onClick={handleSignUp}>登入
               </Button>
             </div>
             <div className="login__container__box signUp">
-              <h2 className="text-light fs-5">還沒有帳號 ?</h2>
+              <h2 className="text-primary fs-5">還沒有帳號 ?</h2>
               <Button type="button" variant="light" 
-                onClick={handleSignUp}>Sign Up
+                onClick={handleSignUp}>註冊
               </Button>
             </div>
           </div>
           <div className={`login__form ${signUp ? "active" : ""}`}>
             <div className="form signInForm">
-              <Form action="post" onSubmit={ e => handleSubmit(signInForm, e)}>
+              <Form action="#" method="post" onSubmit={ e => handleSubmit(signInForm, e)}>
                 <h3 className="text-primary text-center fw-bold mb-3">登入帳號</h3>
                 <Form.Group className="mb-3">
                   <Form.Control type="text"
