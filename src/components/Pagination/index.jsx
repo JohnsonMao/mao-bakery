@@ -37,7 +37,7 @@ export default function Pagination(props) {
   useEffect(()=>{
     handleFilter(filterType)
     pageClick(1)
-  },[filterType])
+  },[])
 
   // 換頁功能
   const pageClick = (pageNum) => {
@@ -45,7 +45,8 @@ export default function Pagination(props) {
     if( pageNum !== currentPage ) 
       setCurrentPage( currentPage => currentPage = pageNum );
     const newIndexList = [];
-    for(let i = (pageNum - 1) * displayNum; i < displayNum * pageNum; i++ ){
+    const maxIndex = totalNum > displayNum * pageNum ? displayNum * pageNum : totalNum;
+    for(let i = (pageNum - 1) * displayNum; i < maxIndex; i++ ){
       newIndexList.push( filterData[i] )
     }
     setIndexList( indexList => indexList = newIndexList )
@@ -66,7 +67,10 @@ export default function Pagination(props) {
 
   // 切換到輸入的頁數
   const goSwitchPage = (e) => {
-    pageClick(e.target.value);
+    if( e.key === 'Enter') {
+      pageClick(e.target.value);
+      e.target.value = '';
+    }
   }
 
   // product List
@@ -85,7 +89,7 @@ export default function Pagination(props) {
 
   return (
     <section className="mt-2">
-      <ul className="row row-cols-3 g-3">
+      <ul className="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-3">
         { showProducts }
       </ul>
       <PageComponent 

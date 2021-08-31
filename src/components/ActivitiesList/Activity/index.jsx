@@ -1,9 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import { Container, Row, Col, Ratio } from 'react-bootstrap'
 
 export default function Activity(props) {
 
-  const { title, description, href } = props;
+  const { title, content, href } = props;
   return (
     <li>
       <Container>
@@ -18,11 +19,11 @@ export default function Activity(props) {
           </Col>
           <Col lg={5} md={6}>
             <div className="d-flex flex-column justify-content-center h-100 p-5">
-              <h3 className="text-center fs-2 text-primary">{ title }</h3>
-              <p className="fs-5 text-primary">
-                { description }
+              <h3 className="text-center fs-3">{ title }</h3>
+              <p className="fs-5">
+                { content }
               </p>
-              <a href={ href }>了解更多</a>
+              { href ? <Link to={ href }>了解更多</Link> : null }
             </div>
           </Col>
         </Row>

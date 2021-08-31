@@ -11,7 +11,7 @@ SwiperCore.use([ Autoplay, Pagination, Navigation, EffectFade ])
 
 export default function Banner(props) {
   
-  const { bannerData: data } = props;
+  const { data } = props;
   const slides = data.map((item, index) => {
     return(
       <SwiperSlide key = {`slide-${index}`} tag = "li" className = "h-100">

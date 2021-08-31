@@ -24,10 +24,6 @@
 @import '~bootstrap/scss/bootstrap';
 @import "./scss/custom_base";
 
-.cover {
-  object-fit: cover;
-}
-
 .card {
   z-index: 2;
 }
@@ -51,15 +47,6 @@
   padding: 1rem 1.25rem;
 }
 
-.dropdown-menu {
-  min-width: max-content;
-  padding: 0.5rem;
-  background: $light;
-  @media (min-width: 768px){
-    min-width: max-content;
-  }
-}
-
 .swiper-button-next, .swiper-button-prev {
   color: $secondary;
 }
@@ -78,6 +65,12 @@
 .page-link.active {
   background: $primary;
   color: #fff;
+}
+
+.bg-img {
+  background-image: url('https://github.com/JohnsonMao/Sweetaste/blob/master/img/cover.jpg?raw=true');
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 @import "~bootstrap/scss/utilities/api";

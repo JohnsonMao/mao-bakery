@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function FilterList(props) {
+export default function SideMenu(props) {
   const { onClick } = props;
   return (
     <nav className="text-center">

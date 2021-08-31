@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as fasFaHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as farFaHeart } from '@fortawesome/free-regular-svg-icons'
 
 export default class ProductCards extends Component {
   render() {
@@ -13,7 +16,7 @@ export default class ProductCards extends Component {
         </div>
         <button type="button" 
           className="btn position-absolute end-0 fs-3 text-danger">
-          <i className="far fa-heart"></i>
+          <FontAwesomeIcon icon={farFaHeart} />
         </button>
         <span className="badge bg-secondary position-absolute">
           {badge}

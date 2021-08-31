@@ -5,13 +5,13 @@ import './_ActivitiesList.scss';
 
 export default function ActivitiesList(props) {
 
-  const { newsData: data } = props;
+  const { data } = props;
   const activies = data.map((item, index) => {
     return(
       <Activity
         key = {index}
         title = {item.title}
-        description = {item.description}
+        content = {item.content}
         href = {item.href}
       />
     )

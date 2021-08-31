@@ -1,3 +1,8 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+
+/* 設定導航 */
+
 const headerNavList = [
   {
     title: '首頁',
@@ -34,7 +39,7 @@ const headerNavList = [
     path: '/login',
   },
   {
-    title: <i className="fas fa-shopping-cart"></i>,
+    title: <FontAwesomeIcon icon={faShoppingCart} />,
     path: '/shopping_cart',
     className: 'd-none d-md-block',
   },

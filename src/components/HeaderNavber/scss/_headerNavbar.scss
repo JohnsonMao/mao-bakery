@@ -10,7 +10,9 @@
   width: 60px;
   height: 60px;
   background-image: url('../img/logo.png');
+  background-color: $light;
   background-size: cover;
+  border-radius: 50%;
 }
 .headerNavbar {
   padding: 0;
@@ -22,4 +24,29 @@
       background-color: rgba($light, .2);
       backdrop-filter: blur(5px)
     }
+}
+
+.childrenMenu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  min-width: max-content;
+  height: 0;
+  padding: 0 .5rem;
+  text-align: center;
+  background: $light;
+  border-radius: .25rem;
+  transform: translateX( -50% );
+  transition: all .3s linear;
+  overflow: hidden;
+
+  @media(max-width: 768px) {
+    position: static;
+  }
+}
+.handleChildrenMenu:hover {
+  .childrenMenu {
+    height: auto;
+    padding: .5rem;
+  }
 }

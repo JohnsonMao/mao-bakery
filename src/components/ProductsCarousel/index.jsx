@@ -10,7 +10,7 @@ SwiperCore.use([ Autoplay, Navigation ]);
 
 export default function ProductsCarousel(props) {
 
-  const { productData: data } = props;
+  const { data } = props;
   const products = data.map((item, index) => {
     return(
       <SwiperSlide key = {`product-${index}`} tag = "li">

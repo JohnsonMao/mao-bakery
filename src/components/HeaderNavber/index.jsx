@@ -1,6 +1,8 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Container, Nav } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart, faSortDown } from '@fortawesome/free-solid-svg-icons';
 
 import headerNavList from '../../config/headerNavConfig';
 import './scss/_headerNavbar.scss';
@@ -21,24 +23,32 @@ export default function HeaderNavbar() {
     return headerNavList.map((item, index) => {
       if( item.children ){
         return (
-          <Fragment key={`menu-${ index }`} >
-          <NavDropdown as={'li'} title={ item.title } 
-            className="text-center fs-5 fw-bold">
-          { 
-            item.children.map((item, index) => { 
-              return (
-                <Link key={`children-${index}`} to={ item.path } className="d-block">
-                  { item.title }
-                </Link>
-              )
-            })
-          }
-        </NavDropdown>
-        </Fragment>
+          <MyNavLink key={`menu-${ index }`} to={ item.path } 
+            className={item.className}
+            parentclass="handleChildrenMenu"
+            menu={
+              <ul className="childrenMenu">
+                { 
+                  item.children.map((item, index) => { 
+                    return (
+                      <li key={`menu-${index}`}>
+                        <Link to={ item.path } 
+                          className="d-block">
+                          { item.title }
+                        </Link>
+                      </li>
+                    )
+                  })
+                }
+              </ul>
+            }>
+            { item.title } <FontAwesomeIcon icon={faSortDown} className="ms-1" />
+          </MyNavLink>
         )
       } else {
         return (
-          <MyNavLink key={`menu-${ index }`} to={ item.path } className={ item.className }>
+          <MyNavLink key={`menu-${ index }`} to={ item.path } 
+            className={ item.className }>
             { item.title }
           </MyNavLink>
         )
@@ -55,7 +65,7 @@ export default function HeaderNavbar() {
         </h1>
         <ul className="d-flex align-items-center m-0">
           <MyNavLink to="/shopping_cart" className="d-block d-md-none">
-            <i className="fas fa-shopping-cart"></i>
+            <FontAwesomeIcon icon={faShoppingCart} />
           </MyNavLink>
           <li>
             <Navbar.Toggle />
@@ -75,9 +85,11 @@ export default function HeaderNavbar() {
 
 function MyNavLink(props) {
   return (
-    <Nav.Item as={'li'}>
+    <Nav.Item as={'li'} className={`position-relative ${ props.parentclass }`}>
       <NavLink {...props} 
-        className={`nav-link text-center fs-5 fw-bold px-4 py-3 ${props.className || ''}`}/>
+        className={`nav-link text-center d-flex align-items-start fs-5 fw-bold px-4 py-3 
+        ${props.className || null}`}/>
+      { props.menu }
     </Nav.Item>
   )
 }
