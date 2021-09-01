@@ -67,11 +67,11 @@ export default function PageComponent(props) {
     <nav className="d-flex flex-column flex-lg-row justify-content-center align-items-center">
       <Pagination className="m-2">
         <li className="page-item">
-          <DirectionBtn to="left" onClick={prevPage} />
+          <DirectionBtn to="left" onClick={ prevPage } />
         </li>
         { pages }
         <li className="page-item">
-          <DirectionBtn to="right" onClick={nextPage} />
+          <DirectionBtn to="right" onClick={ nextPage } />
         </li>
       </Pagination>
       <div className="d-flex align-items-center text-primary">

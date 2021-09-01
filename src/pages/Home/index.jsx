@@ -10,7 +10,9 @@ import productData from '../../data/productData.json';
 export default function Home() {
   return (
     <>
-      <Banner data = {bannerData} />
+      <div className="mb-5">
+        <Banner data = {bannerData} />
+      </div>
       <ActivitiesList data = {newsData} />
       <ProductsCarousel data = {productData} />
       <Subscription />

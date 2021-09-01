@@ -51,15 +51,16 @@
   color: $secondary;
 }
 
-.list-group {
+.sideMenu {
   li+li {
     margin-top: -1px;
   }
 }
 
-.sticky-sideNavbar {
+.sticky-navbar {
   position: sticky;
-  top: 72px;
+  top: 62px;
+  z-index: 1020;
 }
 
 .page-link.active {

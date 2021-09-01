@@ -40,7 +40,7 @@ export default function Banner(props) {
       loop = {true}
       wrapperTag = "ul"
       tag = "section"
-      className = "vh-100 mb-5"
+      className = "vh-100"
     >
       { slides }
     </Swiper>
